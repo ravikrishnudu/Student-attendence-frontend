@@ -21,8 +21,6 @@ function ClassList() {
             <tr className="bg-primary">
               <th scope="col">Grade</th>
               <th scope="col">Student Count</th>
-              {/* <th scope="col">Edit</th>
-              <th scope="col">Delete</th> */}
             </tr>
           </thead>
           <tbody>
@@ -32,12 +30,6 @@ function ClassList() {
                   <tr key={grade.id}>
                     <td>{grade.grade}</td>
                     <td>{grade.students_count}</td>
-                    {/* <td>
-                      <button className="btn btn-warning">Update</button>
-                    </td>
-                    <td>
-                      <button className="btn btn-danger">Delete</button>
-                    </td> */}
                   </tr>
                 );
               })}
