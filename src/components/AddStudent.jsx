@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 function AddStudent() {
   const [name, setName] = useState("");
-  const [gender, setgender] = useState("");
+  const [gender, setGender] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [email, setEmail] = useState("");
   const [grade, setGrade] = useState("Grade");
+  // const [students, setStudents] = useState("");
+
+  // const addStudents = (student) => {
+  //   setStudents([...students, student]);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,6 +22,7 @@ function AddStudent() {
         email,
         gradeId: grade,
       });
+      // addStudents(response.data.student);
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -45,7 +51,7 @@ function AddStudent() {
             <div className="col">
               <input
                 value={gender}
-                onChange={(e) => setgender(e.target.value)}
+                onChange={(e) => setGender(e.target.value)}
                 type="text"
                 className="form-control"
                 placeholder="Gender"
