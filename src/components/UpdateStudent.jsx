@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 
 function UpdateStudent() {
@@ -11,6 +11,15 @@ function UpdateStudent() {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [email, setEmail] = useState("");
   const [grade, setGrade] = useState("Grade");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("http://localhost:8000/student");
+      console.log(response);
+      setName(response.data.name);
+    };
+    fetchData();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

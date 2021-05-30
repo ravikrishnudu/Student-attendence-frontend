@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 function AddStudent() {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [email, setEmail] = useState("");
   const [grade, setGrade] = useState("Grade");
-  // const [students, setStudents] = useState("");
-
-  // const addStudents = (student) => {
-  //   setStudents([...students, student]);
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +19,7 @@ function AddStudent() {
         email,
         gradeId: grade,
       });
-      // addStudents(response.data.student);
+
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -82,6 +79,7 @@ function AddStudent() {
                 className="custom-select my-1 mr-sm-2"
               >
                 <option disabled>Grade</option>
+                {/* <option value={grade.id}>{grade.grade}</option> */}
                 <option value="10">10</option>
                 <option value="9">9</option>
                 <option value="8">8</option>
@@ -97,6 +95,18 @@ function AddStudent() {
             <button className="btn btn-primary">Add</button>
           </div>
         </form>
+      </div>
+      <div className="form-row">
+        <div className="col">
+          <Link to={`/recodattendance/1`} className="btn btn-warning">
+            Recod Attendance
+          </Link>
+        </div>
+        <div className="col">
+          <Link to="/previewattendance" className="btn btn-warning">
+            Preview Attendence
+          </Link>
+        </div>
       </div>
     </div>
   );

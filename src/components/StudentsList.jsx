@@ -1,29 +1,8 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-async function getStudents() {
-  return fetch("http://localhost:8000/student").then((res) => {
-    console.log(res);
-
-    return res.json();
-  });
-}
-
-function StudentList() {
-  const [students, setStudents] = useState("");
-
-  // const addStudents = (student) => {
-  //   setStudents([...students, student]);
-  // };
-
-  useEffect(() => {
-    getStudents().then((students) => {
-      setStudents(students);
-    });
-  }, []);
-  console.log(students);
-
+function StudentsList({ students, setStudents }) {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:8000/student/${id}`);
@@ -36,9 +15,8 @@ function StudentList() {
       console.log(error);
     }
   };
-
   return (
-    <>
+    <div>
       <div className="list-group">
         <table className="table table-hover table-dark">
           <thead>
@@ -82,8 +60,8 @@ function StudentList() {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }
 
-export default StudentList;
+export default StudentsList;
