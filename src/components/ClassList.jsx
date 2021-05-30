@@ -25,14 +25,12 @@ function ClassList() {
           </thead>
           <tbody>
             {grades &&
-              grades.map((grade) => {
-                return (
-                  <tr key={grade.id}>
-                    <td>{grade.grade}</td>
-                    <td>{grade.students_count}</td>
-                  </tr>
-                );
-              })}
+              grades.map((grade) => (
+                <tr>
+                  <td>{grade.grade}</td>
+                  <td>{grade.students_count}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
