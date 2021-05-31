@@ -10,18 +10,24 @@ async function getStudents() {
   });
 }
 
+// async function getStudents() {
+//   try {
+//     const response = await axios("http://localhost:8000/student");
+//     console.log(response);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+
 function StudentList() {
   const [students, setStudents] = useState("");
-
-  // const addStudents = (student) => {
-  //   setStudents([...students, student]);
-  // };
 
   useEffect(() => {
     getStudents().then((students) => {
       setStudents(students);
     });
   }, []);
+
   console.log(students);
 
   const handleDelete = async (id) => {

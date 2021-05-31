@@ -14,8 +14,15 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/class" component={Class} />
           <Route exact path="/student/:id/update" component={UpdateStudent} />
-          <Route path="/recodattendance/:gradeId" component={RecodAttendance} />
-          <Route exact path="/recodedattendance" component={RecodedAttedance} />
+          <Route
+            path="/recodattendanceClass/:gradeId"
+            component={RecodAttendance}
+          />
+          <Route
+            exact
+            path="/recodedattendance/:gradeId"
+            component={RecodedAttedance}
+          />
         </Switch>
       </Router>
     </div>

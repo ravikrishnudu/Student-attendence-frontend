@@ -1,6 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
+async function getGrades() {
+  const res = await axios.get("http://localhost:8000/grade");
+  return res.data;
+}
 
 function UpdateStudent() {
   const { id } = useParams();
@@ -11,12 +15,16 @@ function UpdateStudent() {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [email, setEmail] = useState("");
   const [grade, setGrade] = useState("Grade");
+  const [grades, setGrades] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("http://localhost:8000/student");
       console.log(response);
       setName(response.data.name);
+      getGrades().then((res) => {
+        setGrades(res);
+      });
     };
     fetchData();
   }, []);
@@ -83,23 +91,19 @@ function UpdateStudent() {
             type="text"
           />
           <div className="from-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="grade ">Grade</label>
             <select
               value={grade}
               onChange={(e) => setGrade(e.target.value)}
               className="custom-select my-1 mr-sm-2"
             >
               <option disabled>Grade</option>
-              <option value="10">10</option>
-              <option value="9">9</option>
-              <option value="8">8</option>
-              <option value="7">7</option>
-              <option value="6">6</option>
-              <option value="5">5</option>
-              <option value="4">4</option>
-              <option value="3">3</option>
-              <option value="2">2</option>
-              <option value="1">1</option>
+              {grades &&
+                grades.map((grade) => (
+                  <>
+                    <option value={grade.id}>{grade.grade}</option>
+                  </>
+                ))}
             </select>
           </div>
         </div>

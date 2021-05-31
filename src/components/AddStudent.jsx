@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+
+async function getGrades() {
+  const res = await axios.get("http://localhost:8000/grade");
+  return res.data;
+}
 
 function AddStudent() {
   const [name, setName] = useState("");
@@ -8,6 +13,13 @@ function AddStudent() {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [email, setEmail] = useState("");
   const [grade, setGrade] = useState("Grade");
+  const [grades, setGrades] = useState("");
+
+  useEffect(() => {
+    getGrades().then((res) => {
+      setGrades(res);
+    });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +37,7 @@ function AddStudent() {
       console.log(error);
     }
   };
+  console.log(grade.id);
   return (
     <div>
       <div>
@@ -79,35 +92,26 @@ function AddStudent() {
                 className="custom-select my-1 mr-sm-2"
               >
                 <option disabled>Grade</option>
-                {/* <option value={grade.id}>{grade.grade}</option> */}
-                <option value="10">10</option>
-                <option value="9">9</option>
-                <option value="8">8</option>
-                <option value="7">7</option>
-                <option value="6">6</option>
-                <option value="5">5</option>
-                <option value="4">4</option>
-                <option value="3">3</option>
-                <option value="2">2</option>
-                <option value="1">1</option>
+                {grades &&
+                  grades.map((grade) => (
+                    <>
+                      <option value={grade.id}>{grade.grade}</option>
+                    </>
+                  ))}
               </select>
             </div>
+
             <button className="btn btn-primary">Add</button>
           </div>
         </form>
       </div>
-      <div className="form-row">
-        <div className="col">
-          <Link to={`/recodattendance/1`} className="btn btn-warning">
-            Recod Attendance
-          </Link>
-        </div>
-        <div className="col">
-          <Link to="/previewattendance" className="btn btn-warning">
-            Preview Attendence
-          </Link>
-        </div>
-      </div>
+      {/* <div className="form-row">
+          <div className="col">
+            <Link to="/previewattendance" className="btn btn-warning">
+              Preview Attendence
+            </Link>
+          </div>
+        </div> */}
     </div>
   );
 }

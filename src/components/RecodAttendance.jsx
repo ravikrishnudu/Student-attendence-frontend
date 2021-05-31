@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 async function getStudents(gradeId) {
-  if (gradeId) {
-    return fetch(`http://localhost:8000/student?gradeId=${gradeId}`).then(
-      (res) => {
-        // console.log(res);
-        return res.json();
-      }
-    );
-  } else {
-    return fetch("http://localhost:8000/student").then((res) => {
-      // console.log(res);
-      return res.json();
-    });
+  try {
+    if (gradeId) {
+      const response = await axios.get(
+        `http://localhost:8000/student?gradeId=${gradeId}`
+      );
+      // console.log(response);
+      return response.data;
+    } else {
+      const response = await axios.get("http://localhost:8000/student");
+      return response.data;
+    }
+  } catch (error) {
+    console.error(error);
   }
 }
 
@@ -29,8 +30,8 @@ function RecordAttendance() {
 
   let { gradeId } = useParams();
   useEffect(() => {
-    getStudents(gradeId).then((students) => {
-      setStudents(students);
+    getStudents(gradeId).then((res) => {
+      setStudents(res);
     });
   }, []);
   console.log(students, gradeId);
@@ -53,6 +54,7 @@ function RecordAttendance() {
     const data = { isEntered: isPresent, date: startDate, studentId, gradeId };
     setPresentStudents([...presentStudents, data]);
   };
+  console.log(students);
   console.log(presentStudents);
   return (
     <div>
