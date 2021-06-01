@@ -21,7 +21,7 @@ function UpdateStudent() {
     const fetchData = async () => {
       const response = await axios.get("http://localhost:8000/student");
       console.log(response);
-      setName(response.data.name);
+      // setName(response.data.name);
       getGrades().then((res) => {
         setGrades(res);
       });
@@ -41,6 +41,7 @@ function UpdateStudent() {
         gradeId: grade,
       }
     );
+    console.log(UpdateStudent);
     history.push("/");
   };
   return (

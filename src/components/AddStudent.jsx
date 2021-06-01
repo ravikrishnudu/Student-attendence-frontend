@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 async function getGrades() {
   const res = await axios.get("http://localhost:8000/grade");
