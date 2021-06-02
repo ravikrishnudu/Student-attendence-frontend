@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 async function getGrades() {
-  const res = await axios.get("http://localhost:8000/grades");
+  const res = await axios.get("/grades");
   return res.data;
 }
 
@@ -23,7 +23,7 @@ function AddStudent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/student", {
+      const response = await axios.post("/student", {
         name,
         gender,
         dateOfBirth,

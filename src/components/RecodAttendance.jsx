@@ -9,12 +9,10 @@ import "react-datepicker/dist/react-datepicker.css";
 async function getStudents(gradeId) {
   try {
     if (gradeId) {
-      const response = await axios.get(
-        `http://localhost:8000/students?gradeId=${gradeId}`
-      );
+      const response = await axios.get(`/students?gradeId=${gradeId}`);
       return response.data;
     } else {
-      const response = await axios.get("http://localhost:8000/students");
+      const response = await axios.get("/students");
       return response.data;
     }
   } catch (error) {
@@ -37,7 +35,7 @@ function RecordAttendance() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/attendance", {
+      await axios.post("/attendance", {
         presentStudents,
       });
     } catch (error) {

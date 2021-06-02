@@ -10,7 +10,7 @@ export default function Class() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/grade", {
+      const response = await axios.post("/grade", {
         grade,
         students_count: studentsCount,
       });

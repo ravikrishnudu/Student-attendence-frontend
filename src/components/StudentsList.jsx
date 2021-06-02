@@ -5,7 +5,7 @@ import axios from "axios";
 function StudentsList({ students, setStudents }) {
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/student/${id}`);
+      await axios.delete(`/student/${id}`);
       setStudents(
         students.filter((student) => {
           return student.id !== id;

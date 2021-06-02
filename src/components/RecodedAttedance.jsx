@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 async function getAttendance() {
-  const response = await axios.get("http://localhost:8000/attendance");
+  const response = await axios.get("/attendance");
   return response.data;
 }
 function RecodedAttedance() {

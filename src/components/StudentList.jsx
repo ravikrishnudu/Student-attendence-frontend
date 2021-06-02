@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 async function getStudents() {
-  const response = await axios.get("http://localhost:8000/students");
+  const response = await axios.get("/students");
   return response.data;
 }
 
@@ -20,7 +20,7 @@ function StudentList() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/student/${id}`);
+      await axios.delete(`/student/${id}`);
       setStudents(
         students.filter((student) => {
           return student.id !== id;
