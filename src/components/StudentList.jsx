@@ -3,28 +3,16 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 async function getStudents() {
-  return fetch("http://localhost:8000/student").then((res) => {
-    console.log(res);
-
-    return res.json();
-  });
+  const response = await axios.get("http://localhost:8000/student");
+  return response.data;
 }
-
-// async function getStudents() {
-//   try {
-//     const response = await axios("http://localhost:8000/student");
-//     console.log(response);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
 
 function StudentList() {
   const [students, setStudents] = useState("");
 
   useEffect(() => {
-    getStudents().then((students) => {
-      setStudents(students);
+    getStudents().then((res) => {
+      setStudents(res);
     });
   }, []);
 

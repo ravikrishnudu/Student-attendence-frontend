@@ -4,7 +4,7 @@ import axios from "axios";
 import ClassList from "./ClassList";
 
 export default function Class() {
-  const [grade, setGrade] = useState("");
+  const [grade, setGrade] = useState("Grade");
   const [studentsCount] = useState("0");
 
   const handleSubmit = async (e) => {

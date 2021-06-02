@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 
+import styles from "./Styles.module.css";
 import "react-datepicker/dist/react-datepicker.css";
 
 async function getStudents(gradeId) {
@@ -11,7 +12,6 @@ async function getStudents(gradeId) {
       const response = await axios.get(
         `http://localhost:8000/student?gradeId=${gradeId}`
       );
-      // console.log(response);
       return response.data;
     } else {
       const response = await axios.get("http://localhost:8000/student");
@@ -34,8 +34,6 @@ function RecordAttendance() {
     });
   }, [gradeId]);
 
-  console.log(students, gradeId);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -46,13 +44,16 @@ function RecordAttendance() {
       console.log(error);
     }
   };
+
   const checkPresent = (startDate, studentId) => {
     setIsPresent(true);
     const data = { isPresent, date: startDate, studentId, gradeId };
     setPresentStudents([...presentStudents, data]);
   };
-  console.log(students, gradeId);
+
+  // console.log(students, gradeId);
   // console.log(presentStudents);
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -61,10 +62,11 @@ function RecordAttendance() {
             Recod Attendance
           </h1>
         </div>
-        <div className=" text-md mb-4">
-          <label htmlFor="date">Date</label>
+        <div>
+          <label className={styles.date} htmlFor="date">
+            Date
+          </label>
           <DatePicker
-            // id="date"
             selected={startDate}
             onSelect={(date) => {
               console.log(date);
@@ -107,7 +109,10 @@ function RecordAttendance() {
           </table>
         </div>
         <div>
-          <button className="btn btn-primary display-1 text-center">
+          <button
+            type="submit"
+            className="btn btn-primary display-1 text-center"
+          >
             Submit
           </button>
         </div>

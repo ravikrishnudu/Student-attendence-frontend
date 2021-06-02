@@ -39,7 +39,7 @@ function ClassList() {
                   <td>
                     {" "}
                     <Link
-                      to={`/recodattendanceClass/${grade.id}`}
+                      to={`/recodattendance/class/${grade.id}`}
                       className="btn btn-warning"
                     >
                       Recod Attendance

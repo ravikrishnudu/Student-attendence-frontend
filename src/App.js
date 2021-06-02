@@ -15,7 +15,7 @@ function App() {
           <Route path="/class" component={Class} />
           <Route exact path="/student/:id/update" component={UpdateStudent} />
           <Route
-            path="/recodattendanceClass/:gradeId"
+            path="/recodattendance/class/:gradeId"
             component={RecodAttendance}
           />
           <Route

@@ -30,13 +30,14 @@ function AddStudent() {
         email,
         gradeId: grade,
       });
-
       console.log(response);
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(grade.id);
+
+  // console.log(grade.id);
+
   return (
     <div>
       <div>
