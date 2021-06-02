@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 async function getGrades() {
-  const res = await axios.get("http://localhost:8000/grade");
+  const res = await axios.get("http://localhost:8000/grades");
   return res.data;
 }
 
@@ -19,7 +19,7 @@ function UpdateStudent() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:8000/student");
+      const response = await axios.get("http://localhost:8000/students");
       console.log(response);
       // setName(response.data.name);
       getGrades().then((res) => {

@@ -10,11 +10,11 @@ async function getStudents(gradeId) {
   try {
     if (gradeId) {
       const response = await axios.get(
-        `http://localhost:8000/student?gradeId=${gradeId}`
+        `http://localhost:8000/students?gradeId=${gradeId}`
       );
       return response.data;
     } else {
-      const response = await axios.get("http://localhost:8000/student");
+      const response = await axios.get("http://localhost:8000/students");
       return response.data;
     }
   } catch (error) {

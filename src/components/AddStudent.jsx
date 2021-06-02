@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 async function getGrades() {
-  const res = await axios.get("http://localhost:8000/grade");
+  const res = await axios.get("http://localhost:8000/grades");
   return res.data;
 }
 

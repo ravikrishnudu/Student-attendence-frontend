@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 async function getGrades() {
-  const response = await axios.get("http://localhost:8000/grade");
+  const response = await axios.get("http://localhost:8000/grades");
   return response.data;
 }
 

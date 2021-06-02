@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 async function getStudents() {
-  const response = await axios.get("http://localhost:8000/student");
+  const response = await axios.get("http://localhost:8000/students");
   return response.data;
 }
 
