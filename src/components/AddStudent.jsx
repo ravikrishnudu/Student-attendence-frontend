@@ -44,6 +44,11 @@ function AddStudent() {
         email,
         gradeId: grade,
       });
+      setName("");
+      setEmail("");
+      setGender("");
+      setDateOfBirth("");
+      setGrade("Grade");
       setStudents(...students);
       addStudents(response.data);
       console.log(response);
